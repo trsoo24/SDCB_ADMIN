@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: NEX_SDCB_ADMIN
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/sdcb?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: sdcb
+    password: 1234
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis:
+  mapper-locations: classpath:xml/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+---
+spring:
+  config:
+    activate:
+      on-profile: qa1
+  datasource:
+    jndi-name: java:comp/env/jdbc/maria
+  #    driver-class-name: org.mariadb.jdbc.Driver
+  #    url: jdbc:mariadb://localhost:3306/sdcb?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+  #    username: sdcb
+  #    password: 1234
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis:
+  mapper-locations: classpath:xml/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
