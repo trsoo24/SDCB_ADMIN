@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nex_sdcb_admin.sdcb.block.ctn.mapper.BlockCtnMapper">
+    <insert id="insertBlockCtn" parameterType="com.nex_sdcb_admin.sdcb.block.ctn.dto.InsertBlockCtnRequest">
+        INSERT INTO TBA_BLOCK_CTN(CTN, REG_ID, SUB_NO)
+        VALUES (#{ctn}, #{regId}, #{subNo})
+    </insert>
+
+    <select id="selectBlockCtnList" resultType="com.nex_sdcb_admin.sdcb.block.ctn.entity.BlockCtn">
+        SELECT
+            CTN,
+            DATE_FORMAT(REG_DT, '%Y-%m-%d') AS regDt,
+            REG_ID,
+            SUB_NO
+        FROM TBA_BLOCK_CTN
+    </select>
+
+    <delete id="deleteBlockCtn" parameterType="java.util.List">
+        DELETE FROM TBA_BLOCK_CTN
+        WHERE CTN IN
+        <foreach collection="ctnList" item="ctn" open="(" separator="," close=")">
+            #{ctn}
+        </foreach>
+    </delete>
+
+    <select id="existBlockCtn" parameterType="String" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM TBA_BLOCK_CTN
+        WHERE CTN = #{ctn}
+    </select>
+</mapper>
