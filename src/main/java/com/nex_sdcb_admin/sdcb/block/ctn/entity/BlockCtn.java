@@ -12,6 +12,7 @@ public class BlockCtn {
     private String regDt;
     private String regId;
     private Long subNo;
+    private final String dcb = "SDCB";
 
     public void setCtn(String ctn) {
         this.ctn = ctn;

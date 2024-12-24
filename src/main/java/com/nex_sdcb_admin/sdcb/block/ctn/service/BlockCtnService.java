@@ -32,6 +32,8 @@ public class BlockCtnService {
 
         if (result > 0) {
             log.info("[{}] 응답 : {} ctn 차단 완료", trxNo, request.ctn());
+        } else {
+            log.info("[{}] 응답 : {} ctn 차단 실패", trxNo, request.ctn());
         }
     }
 
